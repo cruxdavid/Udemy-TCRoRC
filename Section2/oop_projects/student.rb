@@ -1,7 +1,6 @@
 # Student class
 class Student
-  # Setter  attr_writer
-  # Getter  attr_reader
+  # Setter  attr_writer Getter  attr_reader
   attr_accessor :first_name, :last_name, :email, :username, :password
 
   def initialize(firstname, lastname, username, email, password)
