@@ -3,15 +3,17 @@ module Crud
   require 'bcrypt'
   puts 'Module CRUD activated'
 
-  def self.create_hash_digest(password)
+  # use self. before method name to use when requiring from other file.
+  # without self. if the module is included in a class.
+  def create_hash_digest(password)
     BCrypt::Password.create(password)
   end
 
-  def self.verify_hash_digest(password)
+  def verify_hash_digest(password)
     BCrypt::Password.new(password)
   end
 
-  def self.create_secure_users(list_of_users)
+  def create_secure_users(list_of_users)
     list_of_users.each do |user_record|
       user_record[:password] = create_hash_digest(user_record[:password])
     end
@@ -19,7 +21,7 @@ module Crud
     list_of_users
   end
 
-  def self.authenticate_user(username, password, list_of_users)
+  def authenticate_user(username, password, list_of_users)
     list_of_users.each do |user_record|
       return user_record if user_record[:username] == username && verify_hash_digest(user_record[:password]) == password
     end
